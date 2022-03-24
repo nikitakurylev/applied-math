@@ -1,7 +1,7 @@
-import matplotlib.pyplot as plt
-import numpy as np
+import math
+import dichotomy
 
-x = np.arange(-1000,1000) 
-y = np.sin(x) * x ** 3; 
-plt.plot(x, y)
-plt.show()
+def func(x):
+    return math.sin(x) * x ** 3
+
+print(dichotomy.calc(func, -100, 100, 0.1))
