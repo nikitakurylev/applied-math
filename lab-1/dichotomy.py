@@ -7,6 +7,9 @@ def calc(func, a, b, precision):
         f2 = func(x2)
         if f1 > f2:
             a = x1
+        elif f1 < f2:
+            b = x2
         else:
+            a = x1
             b = x2
     return (a + b) / 2
