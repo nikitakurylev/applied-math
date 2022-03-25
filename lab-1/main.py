@@ -7,3 +7,4 @@ def func(x):
 
 print(dichotomy.calc(func, 13, 20, 0.1))
 print(goldenSection.calc(func, 13, 20, 0.1))
+print(parabola.calc(func, 13, 20, 0.1))
