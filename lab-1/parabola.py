@@ -24,5 +24,4 @@ def calc(func, a, b, precision):
             else:
                 b = (u + x2) / 2
         iteration_count += 1
-    print("Parabola method: " + str(iteration_count) + " iterations")
-    return (a + b) / 2
+    return (a + b) / 2, iteration_count

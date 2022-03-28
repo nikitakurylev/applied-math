@@ -48,5 +48,4 @@ def calc(func, a, b, precision):
             else:
                 k += 1
         iteration_count += 1
-    print("Fibonacci method: " + str(iteration_count) + " iterations")
-    return (a + b) / 2
+    return (a + b) / 2, iteration_count

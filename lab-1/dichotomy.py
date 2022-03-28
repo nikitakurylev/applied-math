@@ -14,5 +14,4 @@ def calc(func, a, b, precision):
             a = x1
             b = x2
         iteration_count += 1
-    print("Dichotomy method: " + str(iteration_count) + " iterations")
-    return (a + b) / 2
+    return (a + b) / 2, iteration_count

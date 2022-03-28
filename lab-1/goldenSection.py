@@ -11,5 +11,4 @@ def calc(func, a, b, precision):
         else:
             b = x2
         iteration_count += 1
-    print("Golden section method: " + str(iteration_count) + " iterations")
-    return (a + b) / 2
+    return (a + b) / 2, iteration_count

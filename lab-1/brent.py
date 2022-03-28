@@ -55,8 +55,7 @@ def calc(func, a, c, precision):
                 v = u
                 fv = fu
             iteration_count += 1
-    print("Brent method: " + str(iteration_count) + " iterations")
-    return (a+c)/2
+    return (a+c)/2, iteration_count
 
 
 def parabolic_approximation(x1, x2, x3, f1, f2, f3):
