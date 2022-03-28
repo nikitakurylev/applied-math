@@ -13,11 +13,11 @@ def func(x):
     return math.sin(x) * x ** 3
 
 
-print(dichotomy.calc(func, 13, 20, 0.1))
-print(goldenSection.calc(func, 13, 20, 0.1))
-print(fibonacci.calc(func, 13, 20, 0.1))
-print(parabola.calc(func, 13, 20, 0.1))
-print(brent.calc(func, 13, 20, 0.1))
+print(dichotomy.calc(func, 13, 20, 0.001))
+print(goldenSection.calc(func, 13, 20, 0.001))
+print(fibonacci.calc(func, 13, 20, 0.001))
+print(parabola.calc(func, 13, 20, 0.001))
+print(brent.calc(func, 13, 20, 0.001))
 
 powerOfTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 dichotomyIterations = []
