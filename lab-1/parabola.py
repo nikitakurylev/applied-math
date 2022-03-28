@@ -9,7 +9,10 @@ def calc(func, a, b, precision):
         f1 = func(x1)
         f2 = func(x2)
         f3 = func(x3)
-        u = parabolic_approximation(x1, x2, x3, f1, f2, f3)
+        try:
+            u = parabolic_approximation(x1, x2, x3, f1, f2, f3)
+        except Exception:
+            break
         if func(u) < f2:
             if u > x2:
                 a = (u + x2) / 2

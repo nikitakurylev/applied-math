@@ -1,3 +1,5 @@
+from cmath import isclose
+
 def calc(func, a, c, precision):
     iteration_count = 0
     k = (3 - 5 ** 0.5) / 2
@@ -9,7 +11,10 @@ def calc(func, a, c, precision):
         g = e
         e = d
         if x != w and w != v and x != v and fx != fw and fx != fv and fw != fv:
-            temp_u = parabolic_approximation(x, w, v, fx, fw, fv)
+            try:
+                temp_u = parabolic_approximation(x, w, v, fx, fw, fv)
+            except Exception:
+                break
             if (a + precision <= temp_u <= c - precision) and (abs(temp_u - x) < g / 2):
                 u = temp_u
                 d = abs(u - x)
@@ -55,8 +60,12 @@ def calc(func, a, c, precision):
 
 
 def parabolic_approximation(x1, x2, x3, f1, f2, f3):
-    return x2 - ((x2 - x1) ** 2 * (f2 - f3) - (x2 - x3) ** 2 * (f2 - f1))/(2 * ((x2 - x1) * (f2 - f3) - (x2 - x3) * (f2 - f1)))
-
+    if isclose(x1, x3) or isclose(f1, f3):
+        raise Exception("Too close")
+    a = ((f3 - f1) * (x2 - x1) - (f2 - f1) * (x3 - x1)) / (
+                (x3 ** 2 - x1 ** 2) * (x2 - x1) - (x2 ** 2 - x1 ** 2) * (x3 - x1))
+    b = (f2 - f1 - a * (x2 ** 2 - x1 ** 2)) / (x2 - x1)
+    return -b / (2 * a)
 
 def sign(x):
     if x > 0:
