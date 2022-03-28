@@ -13,7 +13,7 @@ def findMinFib(a,b, precision):
             r = m
         else:
             l = m
-        return r
+    return r
 
 def calc(func, a, b, precision):
     iteration_count = 0
