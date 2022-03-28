@@ -38,5 +38,6 @@ for i in powerOfTen:
 lineObjects = plt.plot(powerOfTen, dichotomyIterations,  powerOfTen, goldenSectionIterations, powerOfTen, fibonacciIterations, powerOfTen, parabolaIterations, powerOfTen, brentIterations)
 plt.xlabel("Precision")
 plt.ylabel("Iterations")
+plt.locator_params(axis='x', nbins=len(powerOfTen))
 plt.legend(lineObjects, ('dichotomy', 'goldenSection', 'fibonacci', 'parabola', 'brent'))
 plt.show()
