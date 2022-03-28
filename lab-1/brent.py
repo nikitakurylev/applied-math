@@ -1,5 +1,5 @@
 def calc(func, a, c, precision):
-
+    iteration_count = 0
     k = (3 - 5 ** 0.5) / 2
     x = w = v = (a + c) / 2
     fx = fw = fv = func(x)
@@ -49,14 +49,13 @@ def calc(func, a, c, precision):
             elif fu <= fv or v == x or v == w:
                 v = u
                 fv = fu
+            iteration_count += 1
+    print("Brent method: " + str(iteration_count) + " iterations")
     return (a+c)/2
 
 
 def parabolic_approximation(x1, x2, x3, f1, f2, f3):
-    a = ((f3 - f1) * (x2 - x1) - (f2 - f1) * (x3 - x1)) / (
-                (x3 ** 2 - x1 ** 2) * (x2 - x1) - (x2 ** 2 - x1 ** 2) * (x3 - x1))
-    b = (f2 - f1 - a * (x2 ** 2 - x1 ** 2)) / (x2 - x1)
-    return -b / (2 * a)
+    return x2 - ((x2 - x1) ** 2 * (f2 - f3) - (x2 - x3) ** 2 * (f2 - f1))/(2 * ((x2 - x1) * (f2 - f3) - (x2 - x3) * (f2 - f1)))
 
 
 def sign(x):
