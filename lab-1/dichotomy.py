@@ -1,4 +1,5 @@
 def calc(func, a, b, precision):
+    iteration_count = 0
     while b - a > precision:
         middle = (a + b) / 2
         x1 = middle - precision / 3
@@ -12,4 +13,6 @@ def calc(func, a, b, precision):
         else:
             a = x1
             b = x2
+        iteration_count += 1
+    print("Dichotomy method: " + str(iteration_count) + " iterations")
     return (a + b) / 2

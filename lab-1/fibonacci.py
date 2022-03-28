@@ -16,6 +16,7 @@ def findMinFib(a,b, precision):
         return r
 
 def calc(func, a, b, precision):
+    iteration_count = 0
     n = findMinFib(a, b, precision)
     lambd = a + (fib(n - 2) / fib(n)) * (b - a)
     u = a + (fib(n - 1) / fib(n)) * (b - a)
@@ -46,4 +47,6 @@ def calc(func, a, b, precision):
                     b = u
             else:
                 k += 1
+        iteration_count += 1
+    print("Fibonacci method: " + str(iteration_count) + " iterations")
     return (a + b) / 2

@@ -1,4 +1,5 @@
 def calc(func, a, b, precision):
+    iteration_count = 0
     phi = (1 + (5 ** 0.5)) / 2
     while abs(a - b) > precision:
         x1 = b - (b - a) / phi
@@ -9,4 +10,6 @@ def calc(func, a, b, precision):
             a = x1
         else:
             b = x2
+        iteration_count += 1
+    print("Golden section method: " + str(iteration_count) + " iterations")
     return (a + b) / 2
