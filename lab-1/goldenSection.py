@@ -6,7 +6,7 @@ def calc(func, a, b, precision):
     f1 = func(x1)
     f2 = func(x2)
     while True:
-        print("yes")
+        # print("yes")
         if f1 < f2:
             b = x2
             x2 = x1
