@@ -1,3 +1,4 @@
+from turtle import color
 import gradient_descent as gd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,6 +12,7 @@ xmax = x[0][0]
 ymax = x[0][1]
 x1 = []
 x2 = []
+y = []
 
 curx = [x[0][0], x[0][1]]
 for i in range(0, len(x)):
@@ -20,10 +22,13 @@ for i in range(0, len(x)):
     ymax = max(ymax, x[i][1])
     x1.append(x[i][0])
     x2.append(x[i][1])
-plt.plot(x1, x2)
+    y.append(fn1(x[i]))
+fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+
+ax.plot3D(x1, x2, y)
+
 x1, x2 = np.meshgrid(np.arange(xmin, xmax, 0.1), np.arange(ymin, ymax, 0.1))
 y = fn1([x1,x2])
 
-plt.imshow(y, extent=[xmin,xmax,ymin,ymax], cmap="Greys")
-plt.colorbar()
+ax.plot_wireframe(x1, x2, y, linewidth=0.5, color="red")
 plt.show()
