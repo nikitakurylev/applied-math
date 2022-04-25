@@ -1,7 +1,7 @@
 import numpy as np
 import numdifftools as nd
 from gradient_descent import vector_mod, vector_normalization
-from math_util import norm_gradient
+#from math_util import norm_gradient
 import goldenSection
 M = 50000
 K = (3 - (5 ** 0.5)) / 2
@@ -12,8 +12,8 @@ def conjugate_method(f, x0, eps, lambda_b):
     x_k = x0
     x_next = x0
     t = 0
-    grad = grad_prev = norm_gradient(f, x_k)
-    d = -norm_gradient(f, x_k)
+    grad = grad_prev = vector_normalization(nd.Gradient(f)(x_k))
+    d = -grad
     while k < M:
         x_k = x_next
         grad_prev = grad
@@ -30,6 +30,8 @@ def conjugate_method(f, x0, eps, lambda_b):
         trajectory.append(x_next)
         if vector_mod(x_next - x_k) < eps and abs(f(x_next) - f(x_k)) < eps:
             break
+    print("Iteration count: ", k)
+    print(trajectory[k - 1])
     return trajectory
 
 

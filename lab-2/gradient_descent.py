@@ -18,7 +18,7 @@ MAX_ITERATIONS = 10000
 
 def const_step(t_k, t_0, x_k1, x_k, grad, f, eps):
     x_k1 = x_k - t_k * grad
-    print(x_k1)
+    #print(x_k1)
     return t_k, t_0, x_k1, x_k
 
 
@@ -90,4 +90,5 @@ def gradient_descent(f, x0, eps, t_0, method):
     if (iteration == MAX_ITERATIONS):
         print('Превышен лимит итераций')
     print("Iteration count: ", iteration)
+    print(history[iteration - 1])
     return history
