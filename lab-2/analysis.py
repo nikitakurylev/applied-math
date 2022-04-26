@@ -33,7 +33,7 @@ def drawmesh(ax, fn1, xmin, xmax, ymin, ymax):
     ax.plot_wireframe(x1, x2, y, linewidth=0.5, color="red")
 
 #fn1 = lambda xy: 22 * ((xy[0]-100) ** 4) + 8 * (xy[1] ** 4)
-fn1 = lambda xy: xy[0] ** 2 + xy[1] ** 2
+fn1 = lambda xy: xy[0] ** 2 + 2 * (xy[1] + 5) ** 2
 fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 matplotlib.rcParams['legend.fontsize'] = 10
 drawmesh(ax, fn1, -20, 20, -20, 20)

@@ -8,7 +8,7 @@ K = (3 - (5 ** 0.5)) / 2
 
 def conjugate_method(f, x0, eps, lambda_b):
     trajectory = [x0]
-    k = 0
+    k = 1
     x_k = x0
     x_next = x0
     t = 0
@@ -28,8 +28,10 @@ def conjugate_method(f, x0, eps, lambda_b):
         t = goldenSection.calc(f_min, 0., 10000000., eps)[0]
         x_next = x_k + t * d
         trajectory.append(x_next)
-        if vector_mod(x_next - x_k) < eps and abs(f(x_next) - f(x_k)) < eps:
+        if vector_mod(x_next - x_k) < eps:
             break
+        if k % 2 == 0:
+            d = 0
     print("Iteration count: ", k)
     print(trajectory[k - 1])
     return trajectory
