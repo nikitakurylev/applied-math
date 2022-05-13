@@ -35,7 +35,7 @@ def splitting_method(t_k, t_0, x_k1, x_k, grad, f, eps):
 
 def golden_section(t_k,t_0,x_k1,x_k,grad,f, eps):
     f_find = lambda l: f((x_k - l * grad))
-    min_arg,_ = goldenSection.calc(f_find, 0., 5., eps)
+    min_arg,_ = goldenSection.calc(f_find, 0., 50., eps)
     t_k = min_arg
 
     x_k1 = x_k - t_k * grad
