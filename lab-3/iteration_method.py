@@ -26,13 +26,15 @@ def get_prod_and_diag(csr, vec1, vec2, index_row):
     return product, diag_value
 
 
-def seidel_method(A, b, eps = 1e-6, max_iter = 200):
+def seidel_method(A, b, eps = 2e-3, max_iter = 20000):
     n = A.shape[0]
     x = b
 
+    iterations = 0
     for stage in range(max_iter):
         current_x = np.zeros(n)
 
+        iterations += 1
         for i in range(n):
             product, diag_value = get_prod_and_diag(A, current_x, x, i)
             current_x[i] = (b[i] - product) / diag_value
@@ -48,4 +50,4 @@ def seidel_method(A, b, eps = 1e-6, max_iter = 200):
         #     break
 
         x = current_x
-    return x
+    return x, iterations

@@ -1,3 +1,4 @@
+from unittest import result
 import scipy.sparse
 import numpy as np
 
@@ -15,7 +16,8 @@ def analyze(a, method, k, n):
                 matrix[i, j] = t + pow(10.0, -k)
     x = np.arange(n)
     f = np.matmul(matrix.toarray(), x)
-    return np.average(method(matrix.tocsr(), f) - x)
+    result, iterations = method(matrix.tocsr(), f)
+    return np.average(result - x), iterations
 
 def gilbert(method, n):
     matrix = scipy.sparse.__dict__["lil_matrix"]((n, n))
@@ -26,4 +28,5 @@ def gilbert(method, n):
 
     x = np.arange(n)
     f = np.matmul(matrix.toarray(), x)
-    return np.average(method(matrix.tocsr(), f) - x)
+    result, iterations = method(matrix.tocsr(), f)
+    return np.average(result - x), iterations

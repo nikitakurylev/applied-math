@@ -2,13 +2,13 @@ import numpy as np
 import scipy
 
 def solution(A, b):
-    L, U = lu_decomposition(A)
+    L, U, iterations = lu_decomposition(A)
     #Решаем L(Ux) = b
     #1) Ly = b
     y = lower_trivial_solution(L, b)
     #2) Ux = y
     x = upper_trivial_solution(U, y)
-    return x
+    return x, iterations
 
 def lu_decomposition(A):
     N = A.shape[0]
@@ -16,11 +16,13 @@ def lu_decomposition(A):
     L = scipy.sparse.__dict__["lil_matrix"]((N, N))
     U = L.copy()
 
+    iterations = 0
     for i in range(N):
 
         # U
         for k in range(i, N):
 
+            iterations += 1
             # sum(L(i, j) * U(j, k)) (j,i-1)
             sum = 0
             for j in range(i):
@@ -30,6 +32,7 @@ def lu_decomposition(A):
 
         # L
         for k in range(i, N):
+            iterations += 1
             if i == k:
                 L[i,i] = 1  # Главн. диагональ = 1
             else:
@@ -42,7 +45,7 @@ def lu_decomposition(A):
                 # L(k, i)
                 L[k,i] = ((A[k,i] - sum) / U[i,i])
 
-    return L.tocsr(), U.tocsr()
+    return L.tocsr(), U.tocsr(), iterations
 
 
 def lower_trivial_solution(A, b):
