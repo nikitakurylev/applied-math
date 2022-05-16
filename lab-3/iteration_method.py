@@ -37,8 +37,15 @@ def seidel_method(A, b, eps = 1e-6, max_iter = 200):
             product, diag_value = get_prod_and_diag(A, current_x, x, i)
             current_x[i] = (b[i] - product) / diag_value
 
-        if np.allclose(x, current_x, rtol=eps):
+        tmp_mat = np.matmul(A.toarray(), current_x)
+        is_enough = True
+        for i in range(len(tmp_mat)):
+            if abs(tmp_mat[i] - b[i]) > eps:
+                is_enough = False
+        if is_enough:
             break
+        # if np.allclose(x, current_x, rtol=eps):
+        #     break
 
         x = current_x
     return x
