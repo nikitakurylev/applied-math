@@ -41,6 +41,4 @@ def seidel_method(A, b, eps = 1e-6, max_iter = 200):
             break
 
         x = current_x
-    else:
-        raise RuntimeError("Seidel method diverges")
     return x
