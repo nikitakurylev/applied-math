@@ -1,5 +1,9 @@
+from array import array
 from math import sin, cos, atan, pi
 import numpy as np
+from analysis import gilbertMatrix
+import matplotlib.pyplot as plt
+
 
 def jacobi_method(M, ap=1e-6, rp=1e-5):
     '''
@@ -27,6 +31,7 @@ def jacobi_method(M, ap=1e-6, rp=1e-5):
     Q_updated = np.identity(n)
     max_val = 999999  # бесконечность(нужен для первой итерации)
     max_val_old = 0
+    iterations = 0
     while True:
         # критерий останова
         change = abs(max_val - max_val_old)
@@ -50,6 +55,7 @@ def jacobi_method(M, ap=1e-6, rp=1e-5):
                 theta = -pi / 4
         # создаем матрицу поворота(Гивенса)
         Q = create_rotate_matrix(n, i, j, theta)
+        iterations = iterations + n
         # обновляем Q(это будет собственные вектора)
         Q_updated = np.dot(Q_updated, Q)
         # получаем новый вектор M используя левое и првое умножениe: Q.T*M*Q
@@ -58,7 +64,7 @@ def jacobi_method(M, ap=1e-6, rp=1e-5):
     # сортим индексы собственных значений
     sort_indices = M_updated.diagonal().argsort()[::-1]
 
-    return M_updated.diagonal()[sort_indices], Q_updated.T[sort_indices]
+    return M_updated.diagonal()[sort_indices], Q_updated.T[sort_indices], iterations
 
 A = [[2, -1, 0], [-1, 2, -1], [0, -1, 2]]
 # using numpy
@@ -67,7 +73,8 @@ print(vals)
 print(vecs.T)
 
 # using above func
-vals, vecs = jacobi_method(np.array(A))
+vals, vecs, iterations = jacobi_method(np.array(A))
+print(iterations)
 print(vals)
 print(vecs)
 
@@ -79,7 +86,16 @@ vals, vecs = np.linalg.eig(B)
 print(vals)
 print(vecs.T)
 
-vals, vecs = jacobi_method(np.array(B))
+vals, vecs, iterations = jacobi_method(np.array(B))
+print(iterations)
 print(vals)
 print(vecs)
 
+iters = []
+for k in range(2,200):
+    vals, vecs, iterations = jacobi_method(gilbertMatrix(k))
+    print(str(k) + " - " + str(iterations))
+    iters.append(iterations)
+
+plt.plot(range(2, 200), iters)
+plt.show()

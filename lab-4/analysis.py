@@ -1,4 +1,3 @@
-from unittest import result
 import scipy.sparse
 import numpy as np
 
@@ -28,7 +27,7 @@ def gilbert(method, n):
     return np.average(result - x), iterations
 
 def gilbertMatrix(n):
-    matrix = scipy.sparse.__dict__["lil_matrix"]((n, n))
+    matrix = np.zeros((n, n))
     for i in range(n):
         for j in range(n):
             matrix[i, j] = 1.0 / (i + j + 1)
