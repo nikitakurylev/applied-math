@@ -2,6 +2,7 @@ from array import array
 from math import sin, cos, atan, pi
 import numpy as np
 from analysis import gilbertMatrix
+from analysis import conditionalMatrix
 import matplotlib.pyplot as plt
 
 
@@ -92,10 +93,19 @@ print(vals)
 print(vecs)
 
 iters = []
-for k in range(2,200):
-    vals, vecs, iterations = jacobi_method(gilbertMatrix(k))
-    print(str(k) + " - " + str(iterations))
+a = np.random.randint(-4, 0, (5, 5))
+
+for k in range(0,200):
+    vals, vecs, iterations = jacobi_method(conditionalMatrix(a, k, 5), 0.1)
     iters.append(iterations)
 
-plt.plot(range(2, 200), iters)
+plt.plot(range(0, 200), iters)
 plt.show()
+
+# iters = []
+# for k in range(2,200):
+#     vals, vecs, iterations = jacobi_method(gilbertMatrix(k))
+#     iters.append(iterations)
+
+# plt.plot(range(2, 200), iters)
+# plt.show()
